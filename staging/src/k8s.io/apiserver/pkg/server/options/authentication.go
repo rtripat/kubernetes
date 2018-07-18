@@ -240,7 +240,8 @@ func (s *DelegatingAuthenticationOptions) getClientCA() (*ClientCertAuthenticati
 		return nil, err
 	}
 	if incluster == nil {
-		return nil, fmt.Errorf("cluster doesn't provide client-ca-file")
+                glog.Warningf("cluster doesn't provide client-ca-file")
+                return &s.ClientCert, nil
 	}
 	return incluster, nil
 }
